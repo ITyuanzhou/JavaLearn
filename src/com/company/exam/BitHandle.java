@@ -10,18 +10,42 @@ public class BitHandle {
         Scanner scanner = new Scanner(System.in);
         int dataLength = scanner.nextInt();
         scanner.nextLine();
-        int[] longs = new int[dataLength];
+
         String[] strings = scanner.nextLine().split(" ");
+        char[] chars = new char[8*dataLength];
+
         for (int i=0;i<strings.length;i++){
             String str = strings[i];
             if(str.indexOf("x")!=-1){
                 str = str.substring(str.indexOf("x")+1,str.length());
             }
 
-            Byte tByte = Byte.parseByte(str,16);
-            String estr = Integer.toBinaryString((tByte & 0xFF) + 0x100).substring(1);
-            char[] chars = estr.toCharArray();
-            System.out.println("");
+            int num = Integer.parseInt(str,16);
+            byte tByte = (byte) num;
+            char[] charArray = Integer.toBinaryString((tByte & 0xFF) + 0x100).substring(1).toCharArray();
+
+            for(int j=0;j<charArray.length;j++){
+                chars[8*i+j] = charArray[j];
+            }
+        }
+
+        int outputLength = scanner.nextInt();
+        int[] output = new int[outputLength];
+        scanner.nextLine();
+
+        int currentIndex =0;
+        for(int i=0;i<outputLength;i++){
+            int outputbit = scanner.nextInt();
+            scanner.nextLine();
+
+            String str = new String(chars,currentIndex,outputbit);
+            currentIndex += outputbit;
+
+            output[i] = Integer.parseInt(str,2);
+        }
+
+        for (int num:output) {
+            System.out.println(num);
         }
     }
 }
