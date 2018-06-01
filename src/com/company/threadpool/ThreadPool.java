@@ -61,7 +61,7 @@ public final class ThreadPool {
             System.out.println("主程序拿到了资源");
             for (TestThreadPool.CustomTask t : task)
                 taskQueue.add(t);
-            taskQueue.notify();
+            taskQueue.notifyAll();
             System.out.println("主程序唤醒了其他线程");
         }
     }

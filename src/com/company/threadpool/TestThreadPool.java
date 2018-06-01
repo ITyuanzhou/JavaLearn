@@ -7,7 +7,7 @@ public class TestThreadPool {
 
     public static void main(String[] args) {
         // 创建3个线程的线程池
-        ThreadPool t = ThreadPool.getThreadPool(5);
+        ThreadPool t = ThreadPool.getThreadPool(2);
         t.execute(new CustomTask[] { new CustomTask(), new CustomTask(), new CustomTask()});
         t.execute(new CustomTask[] { new CustomTask(), new CustomTask(), new CustomTask()});
 
